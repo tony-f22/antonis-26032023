@@ -8,7 +8,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
 from products.models import Product
-from products.serializers import ProductSerializer
+from products.serializers import CustomProductSerializer
 
 from django.db.models import Q
 
@@ -39,8 +39,8 @@ def products(request):
             except EmptyPage:
                 products = paginator.page(paginator.num_pages)  # return the last page
 
-            # Serialize the data
-            serializer = ProductSerializer(products, many=True)
+            # Serialize the most important data
+            serializer = CustomProductSerializer(products, many=True)
 
             # Cache the results (optional)
             cache_key = f'product_list:{query}:{page}'.replace(' ', '_')
