@@ -6,7 +6,7 @@ import {
     PRODUCT_LIST_SUCCESS
 } from "../constants/productConstants";
 
-export const listProducts = (keyword = '') => async (dispatch, getState) => {
+export const listProducts = (keyword = '') => async (dispatch) => {
     try {
 
         dispatch({
