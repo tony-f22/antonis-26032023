@@ -85,15 +85,41 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': config('DATABASE_ENGINE'),
-        'NAME': config('DATABASE_NAME'),
-        'HOST': config('DATABASE_HOST'),
-        'PORT': config('DATABASE_PORT'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': config('DATABASE_ENGINE'),
+#         'NAME': config('DATABASE_NAME'),
+#         'HOST': config('DATABASE_HOST'),
+#         'PORT': config('DATABASE_PORT'),
+#
+#     }
+# }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': config('DATABASE_ENGINE'),
+#         'NAME': config('DATABASE_NAME'),
+#         'CLIENT': {
+#             'host': config('DATABASE_HOST'),
+#             'port': int(config('DATABASE_PORT')),
+#             'username': config('USERNAME'),
+#             'password': config('PASSWORD'),
+#             'authSource': 'admin',
+#             'ssl': True,
+#         },
+#     },
+# }
+
+DATABASES = {
+        'default': {
+            'ENGINE': config('DATABASE_ENGINE'),
+            'NAME': config('DATABASE_NAME'),
+            'ENFORCE_SCHEMA': config('ENFORCE_SCHEMA', default=False, cast=bool),
+            'CLIENT': {
+                'host': config('HOST')
+            }
+        }
+}
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
